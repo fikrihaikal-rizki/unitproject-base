@@ -2,11 +2,8 @@ FROM php:7.2.10-apache
 
 LABEL maintainer='André Vitor Cuba de Miranda <avandrevitor@gmail.com'
 
-# Update and Download Packages Debian
-RUN apt-get update --yes
-
 # Install Dependencies
-RUN apt-get install --yes \
+RUN apt-get update && apt-get install -y \
  autoconf \
  bzip2 \
  curl \

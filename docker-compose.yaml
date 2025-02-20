@@ -4,7 +4,7 @@ services:
   php-7:
     container_name: php-7
     build:
-      context: ./apps
+      context: ./Apps
       dockerfile: Dockerfile
     ports:
       - "80:80"
