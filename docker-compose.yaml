@@ -1,0 +1,20 @@
+version: "1.0"
+
+services:
+  php-7:
+    container_name: php-7
+    build:
+      context: ./apps
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./apps:/var/www/html
+    networks:
+      - application
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+networks:
+  application:
+    driver: bridge
