@@ -24,10 +24,10 @@ services:
         networks:
             - ubuntu-network
         restart: unless-stopped
-    mysql-5:
+    mysql-5-database:
         image: mysql:5.7-debian
         platform: "linux/amd64"
-        container_name: mysql-5
+        container_name: mysql-5-database
         restart: always
         environment:
             MYSQL_ROOT_USER: root
