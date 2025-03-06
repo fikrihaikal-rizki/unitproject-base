@@ -1,20 +1,50 @@
 version: "1.0"
 
 services:
-  php-7:
-    container_name: php-7
-    build:
-      context: ./Apps
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
-    volumes:
-      - ./apps:/var/www/html
-    networks:
-      - application
-    restart: unless-stopped
-    stdin_open: true
-    tty: true
+    php-apache-5:
+        container_name: php-apache-5
+        build:
+            context: ./php5
+        image: php5-apache
+        ports:
+            - "85:80"
+        volumes:
+            - /var/www/php5:/var/www/html
+        networks:
+            - ubuntu-network
+        restart: unless-stopped
+	go-server:
+        container_name: go-server
+        build:
+            context: ./go
+        image: php5-apache
+        ports:
+            - "85:80"
+        volumes:
+            - /var/www/php5:/var/www/html
+        networks:
+            - ubuntu-network
+        restart: unless-stopped
+    mysql-5:
+        image: mysql:5.7-debian
+        platform: "linux/amd64"
+        container_name: mysql-5
+        restart: always
+        environment:
+            MYSQL_ROOT_USER: root
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_PASSWORD: sbux
+            MYSQL_USER: sbux
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysql
+        ports:
+            - '3305:3306' 
+        volumes:
+            - './mysql5/db/data:/var/lib/mysql'
+            - './mysql5/db/my.cnf:/etc/mysql/conf.d/my.cnf'
+            - './mysql5/db/sql:/docker-entrypoint-initdb.d'
+        networks:
+            - ubuntu-network
 networks:
-  application:
-    driver: bridge
+    ubuntu-network:
+        driver: bridge
