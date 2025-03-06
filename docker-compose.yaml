@@ -17,11 +17,10 @@ services:
         container_name: go-server
         build:
             context: ./go
-        image: php5-apache
         ports:
-            - "85:80"
+            - "8080:80"
         volumes:
-            - /var/www/php5:/var/www/html
+            - /var/www/go:/var/www/html
         networks:
             - ubuntu-network
         restart: unless-stopped
@@ -32,9 +31,9 @@ services:
         restart: always
         environment:
             MYSQL_ROOT_USER: root
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_PASSWORD: sbux
-            MYSQL_USER: sbux
+            MYSQL_ROOT_PASSWORD: upilproject
+            MYSQL_PASSWORD: unitproject
+            MYSQL_USER: upilproject
             SERVICE_TAGS: dev
             SERVICE_NAME: mysql
         ports:
