@@ -13,7 +13,7 @@ services:
         networks:
             - ubuntu-network
         restart: unless-stopped
-	go-server:
+    go-server:
         container_name: go-server
         build:
             context: ./go

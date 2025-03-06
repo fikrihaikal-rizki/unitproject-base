@@ -1,7 +1,5 @@
 FROM php:5.6.40-apache
 
-LABEL maintainer="developer@esb.co.id"
-
 # Set timezone
 ENV TZ Asia/Jakarta
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -34,4 +32,4 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
     mv composer /usr/local/bin/
 
 # Expose apache
-EXPOSE 80
+EXPOSE 85
