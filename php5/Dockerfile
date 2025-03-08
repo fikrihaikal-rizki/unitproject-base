@@ -14,7 +14,7 @@ RUN apt-get update -y && \
     libicu-dev \
     zlib1g-dev \
     libpng-dev \
-    nano
+    nano \
     wget
 
 # Install PHP extension
