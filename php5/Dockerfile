@@ -15,6 +15,7 @@ RUN apt-get update -y && \
     zlib1g-dev \
     libpng-dev \
     nano
+    wget
 
 # Install PHP extension
 RUN docker-php-ext-install gd pdo pdo_mysql mysql mysqli intl zip opcache
@@ -30,6 +31,10 @@ RUN a2enmod rewrite && \
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
     php composer-setup.php --install-dir=. --filename=composer && \
     mv composer /usr/local/bin/
+
+RUN wget https://golang.org/dl/go1.24.1.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.24.1.linux-amd64.tar.gz
+RUN export PATH=$PATH:/usr/local/go/bin
 
 # Expose apache
 EXPOSE 85

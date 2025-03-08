@@ -13,17 +13,6 @@ services:
         networks:
             - ubuntu-network
         restart: unless-stopped
-    go-server:
-        container_name: go-server
-        build:
-            context: ./go
-        ports:
-            - "8080:80"
-        volumes:
-            - /var/www/go:/var/www/html
-        networks:
-            - ubuntu-network
-        restart: unless-stopped
     mysql-5-database:
         image: mysql:5.7-debian
         platform: "linux/amd64"
