@@ -13,6 +13,19 @@ services:
         networks:
             - ubuntu-network
         restart: unless-stopped
+    php-apache-72:
+        container_name: php-apache-72
+        build:
+            context: ./php72
+        image: php72-apache
+        ports:
+            - "8585:80"
+            - "80:80"
+        volumes:
+            - /var/www/php7:/var/www/html
+        networks:
+            - ubuntu-network
+        restart: unless-stopped
     mysql-5-database:
         image: mysql:5.7-debian
         platform: "linux/amd64"
